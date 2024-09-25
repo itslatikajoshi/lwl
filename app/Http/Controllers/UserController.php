@@ -41,8 +41,34 @@ class UserController extends Controller
         $value = User::create($data);
     }
     // it will display data in form of table
-    public function display(){
+    public function display()
+    {
         $values = User::all()->toArray(); //this will convert collection to array and display values (it is displaying data in form of collection)
+
         return view('display', ['data' => $values]);
+    }
+    public function edit($id)
+    {
+        $row = User::findOrFail($id); // Find the data by ID
+        return view('update', compact('row')); // Return the edit view with the data
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
+
+        // Find the record and update
+        $row = User::findOrFail($id);
+        $row->name = $request->name;
+        $row->email = $request->email;
+        $row->updated_at = now(); // Update the timestamp
+        $row->save(); // Save changes to the database
+
+        // Redirect back or to a success page
+        return redirect()->route('data.display')->with('success', 'Data updated successfully!');
     }
 }
