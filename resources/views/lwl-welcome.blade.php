@@ -12,11 +12,14 @@
 
         <!-- style sheet add -->
          <link rel="stylesheet" href="{{asset('css/app.css?ver='). time()}}">
+         {{--Loading Your Scripts and Styles  --}}
+         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
 
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="container">
+        {{ $slot }}
+       {{--  <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2 class="lwl-text-center">Sign Up</h2>
@@ -40,6 +43,6 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </body>
 </html>
