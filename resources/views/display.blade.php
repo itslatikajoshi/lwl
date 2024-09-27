@@ -1,4 +1,5 @@
 @extends('layouts.layouts')
+@section('title', 'Display')
 @section('content')
     <h2 class="text-center">Display Data</h2><br>
     <!-- Display success message if it exists -->
