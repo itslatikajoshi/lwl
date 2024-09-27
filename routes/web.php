@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,4 @@ Route::get('display', [UserController::class, 'display'])->name('data.display');
 Route::get('data/{id}/edit', [UserController::class, 'edit'])->name('data.edit');
 // This will save new and updated data
 Route::put('data/{id}', [UserController::class, 'update'])->name('data.update');
+Route::resource('about', AboutController::class);
