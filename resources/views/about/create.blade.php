@@ -1,6 +1,7 @@
 @extends('layouts.layouts')
 @section('content')
-<form action="{{route('about.store')}}">
+<form action="{{route('about.store')}}" method="POST">
+    @csrf
     @method('POST')
     <div class="mb-3">
         <label for="create-content" class="form-label">Content</label>

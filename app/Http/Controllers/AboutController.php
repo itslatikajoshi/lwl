@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -11,8 +12,9 @@ class AboutController extends Controller
      */
     public function index()
     {
+        $about= About::find(2);
         $data =[
-            'content'=>'Happiness is not something readymade. It comes from your own actions. - Dalai Lama',
+            'content'=>$about->content,
             'title'=>'About'
         ];
         return view('about.about',$data);
@@ -31,7 +33,8 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        About::create($data);
     }
 
     /**
