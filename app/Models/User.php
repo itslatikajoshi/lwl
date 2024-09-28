@@ -19,7 +19,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        // 'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -46,20 +48,25 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-     // Define accessor for created_at
-     public function getCreatedAtAttribute($value)
-     {
-         return Carbon::parse($value)->format('F j, Y, g:i A');
-     }
+    // Define accessor for created_at
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('F j, Y, g:i A');
+    }
 
-     // Define accessor for updated_at
-     public function getUpdatedAtAttribute($value)
-     {
-         return Carbon::parse($value)->format('F j, Y, g:i A');
-     }
-     // To append Joshi after each first name
-     /* public function getNameAttribute($value)
+    // Define accessor for updated_at
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('F j, Y, g:i A');
+    }
+    // To append Joshi after each first name
+    /* public function getNameAttribute($value)
      {
          return $value.' Joshi';
      } */
+    public function setNameAttribute($value)
+    {
+        dd("x");
+        $this->attributes['name'] = $this->first_name . ' ' . $this->last_name;
+    }
 }

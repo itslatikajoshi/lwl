@@ -12,6 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
+        return view('signup-form');
+
         echo "Latika";
         // calling static function of User service. To call static function we have to use ::
         echo UserService::getName();
