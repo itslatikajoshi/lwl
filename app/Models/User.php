@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        // 'name',
+        'name',
         'first_name',
         'last_name',
         'email',
@@ -64,9 +64,13 @@ class User extends Authenticatable
      {
          return $value.' Joshi';
      } */
+    public function getNameAttribute($value)
+    {
+        return $value;
+    }
     public function setNameAttribute($value)
     {
-        dd("x");
+        // You can ignore $value since you are constructing name from first_name and last_name
         $this->attributes['name'] = $this->first_name . ' ' . $this->last_name;
     }
 }

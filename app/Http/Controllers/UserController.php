@@ -39,7 +39,18 @@ class UserController extends Controller
     // it will create n save data from form
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required',
+                'username' => 'required',
+                'password' => 'required'
+            ]
+        );
         $data = $request->all();
+        $data['name'] = '';
+        // dd($data);
         $value = User::create($data);
     }
     // it will display data in form of table
