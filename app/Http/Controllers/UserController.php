@@ -43,9 +43,10 @@ class UserController extends Controller
             [
                 'first_name' => 'required',
                 'last_name' => 'required',
-                'email' => 'required',
-                'username' => 'required',
-                'password' => 'required'
+                'email' => 'required|email|unique:users,email', // Corrected this line
+                // 'username' => 'required |unique:users,username', // Added unique check for username
+                'username' => 'required', // Added unique check for username
+                'password' => 'required|min:8' // Optionally add min length for password
             ]
         );
         $data = $request->all();
